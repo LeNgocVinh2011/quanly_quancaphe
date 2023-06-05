@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Cafe_manager.ProductsMng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign1="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Cafe_manager"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="20" FontWeight="Bold" Content="DANH SÁCH SẢN PHẨM" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Sitka Subheading"/>
+        <StackPanel Orientation="Horizontal" Margin="30,0,30,0" Grid.Row="1" VerticalAlignment="Center">
+            <TextBox x:Name="txtSearch" materialDesign1:HintAssist.Hint="Tìm kiếm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Width="200"  HorizontalAlignment="Left"/>
+            <Label Content="Danh mục: " FontFamily="Sitka Subheading" VerticalAlignment="Center"/>
+            <ComboBox Margin="5,8,5,0"
+                 x:Name="cbxCategories"
+                 Width="100"
+                 FontSize="13"
+                 FontFamily="Sitka Subheading"
+                 SelectionChanged="cbxCategories_SelectionChanged"
+                 Background="Transparent"
+                 BorderThickness="0,0,0,0.25"
+                 DisplayMemberPath="Name"
+                 SelectedValuePath="cat_Id"
+                />
+            <Button Background="Green" Click="btnSearch_Click" Margin="10,0,10,0"  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" x:Name="btnSearch">
+                <materialDesign1:PackIcon Kind="Search" VerticalAlignment="Center"/>
+            </Button>
+            <Button Background="Blue" Click="btnReset_Click" Margin="10,0,10,0"  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" x:Name="btnReset">
+                <materialDesign1:PackIcon Kind="Reload" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,30,0">
+            <Label Content="Thêm mới" FontFamily="Sitka Subheading" VerticalAlignment="Center" x:Name="lbData"/>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5,0,5,0" x:Name="addProduct" Click="addProduct_Click">
+                <materialDesign1:PackIcon Kind="Add" VerticalAlignment="Center"/>
+            </Button>
+            <Button x:Name="btnPrev" Click="btnPrev_Click" Background="Brown" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5,0,5,0">
+                <materialDesign1:PackIcon Kind="KeyboardArrowLeft" VerticalAlignment="Center"/>
+            </Button>
+            <Label x:Name="lbPageNumber" Content="Trang 1/2" FontFamily="Sitka Subheading" VerticalAlignment="Center"/>
+            <Button x:Name="btnNext" Click="btnNext_Click" Background="Brown" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5,0,5,0">
+                <materialDesign1:PackIcon Kind="KeyboardArrowRight" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <DataGrid Grid.Row="2" Margin="5,20,5,5" x:Name="drgProducts" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="drgProducts_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding Name}"
+                    Header="Tên sản phẩm"
+                    MinWidth="200"
+                    Width="*"
+                    />
+                <DataGridTextColumn
+                    Binding="{Binding Price}"
+                    Header="Giá sản phẩm"
+                    MinWidth="200"
+                    Width="*"
+                    />
+                <DataGridTemplateColumn Header="Hình ảnh sản phẩm" MinWidth="200" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding imgPath}" Width="30" Height="30" HorizontalAlignment="Left"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                     Binding="{Binding FRUID_CATEGORIES.Name}"
+                    Header="Danh mục sản phẩm"
+                    MinWidth="200"
+                    Width="*"
+                    />
+                
+                <DataGridTemplateColumn Width="100" x:Name="editData">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Width="50" Height="30" Background="Green" x:Name="btnEditProduct" Click="btnEditProduct_Click">
+                                <materialDesign1:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100" x:Name="DeleteData">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="50" Height="30" Background="Red" x:Name="btnDeleteProduct" Click="btnDeleteProduct_Click">
+                                <materialDesign1:PackIcon Kind="Delete" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

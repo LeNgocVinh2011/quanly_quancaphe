@@ -1,0 +1,74 @@
+﻿<Window x:Class="Cafe_manager.AddProducts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cafe_manager"
+        mc:Ignorable="d"
+        xmlns:materialDesign1="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="AddProducts" WindowStyle="None"
+        Height="450" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="44*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="44*"/>
+            </Grid.RowDefinitions>
+            <Grid Height="60" VerticalAlignment="Top" Background="#FF34268A" Grid.Row="0">
+                <TextBlock FontFamily="Sitka Subheading" Text="Quản lý Cafe HV" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="White"/>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="btnMiniSize" Background="{x:Null}" BorderBrush="{x:Null}" 
+                    Click="btnMiniSize_Click"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    >
+                        <materialDesign1:PackIcon Kind="WindowMinimize" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="btnMax" Background="{x:Null}" BorderBrush="{x:Null}" 
+                    IsEnabled="False">
+                        <materialDesign1:PackIcon Kind="WindowMaximize" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button Click="btnClose_Click" x:Name="btnClose" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <materialDesign1:PackIcon Kind="Close" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Label x:Name="lbName" FontSize="20" FontWeight="Bold" Content="THÊM MỚI SẢN PHẨM" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Sitka Subheading"/>
+            <TextBox Grid.Row="2" materialDesign1:HintAssist.Hint="TÊN SẢN PHẨM" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="5" Name="editCatName"/>
+            <TextBox Grid.Row="4" materialDesign1:HintAssist.Hint="GIÁ SẢN PHẨM" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="5" Name="editPrice"/>
+            <TextBox Grid.Row="5" materialDesign1:HintAssist.Hint="LINK ẢNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="5" Name="editImgPath"/>
+            <StackPanel Grid.Row="3" Margin="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label VerticalAlignment="Center">Thuộc danh mục</Label>
+                <ComboBox Margin="5,8,5,0"
+                 VerticalAlignment="Center"
+                 x:Name="cbxCategories"
+                 Width="100"
+                 FontSize="13"
+                 FontFamily="Sitka Subheading"
+                 Background="Transparent"
+                 BorderThickness="0,0,0,0.25"
+                 DisplayMemberPath="Name"
+                 SelectedValuePath="cat_Id"
+                />
+            </StackPanel>
+            <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Width="40" Height="40" x:Name="btnGetLink" Click="btnGetLink_Click" Style="{StaticResource MaterialDesignFloatingActionButton}">
+                    <materialDesign1:PackIcon Kind="ImageAdd" VerticalAlignment="Center"/>
+                </Button>
+                <Label Content="Thêm ảnh" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Sitka Subheading"/>
+            </StackPanel>
+
+            <Image x:Name="imgPath" Grid.Row="7"/>
+            <Button Grid.Row="8" x:Name="btnCreate" VerticalAlignment="Center" Width="150" Content="THÊM SẢN PHẨM" Click="btnCreate_Click"/>
+        </Grid>
+    </Grid>
+</Window>
